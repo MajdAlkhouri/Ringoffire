@@ -9,6 +9,7 @@ export class PlayerComponent implements OnInit {
 
   @Input() name; //variable für spieler namen .. was wir rein geben in unsere componente
 
+
   constructor() { }
 
   ngOnInit(): void {
