@@ -12,10 +12,16 @@
     margin-left: 16px;
   }
 
+  background-color: rgba(42, 165, 232, 0.8);
+
   img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 100%;
   }
+}
+
+.player-Active{
+  background-color: rgb(0, 115, 255) !important;
 }

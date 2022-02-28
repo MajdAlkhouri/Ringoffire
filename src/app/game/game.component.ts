@@ -3,7 +3,6 @@ import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -32,9 +31,14 @@ export class GameComponent implements OnInit {
       this.currentCard = this.game.stack.pop(); //pop methode zeigt die letzte wert vom array und entfernt ihn
       console.log(this.currentCard);
       this.pickCardAnimation = true; // pick-card class wird ausgefürt wenn die variable true ist (wenn man auf die karte klickt)
- 
+
       console.log('New card: ' + this.currentCard);
-      console.log('Game is : ', this.currentCard);
+      console.log('Game is : ', this.game);
+
+      this.game.currentPlayer++; // nächste spieler zum auswählen
+      this.game.currentPlayer =
+        this.game.currentPlayer % this.game.players.length; //!! nicht verstanden // warum 3
+
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard); //warum
         this.pickCardAnimation = false;
@@ -46,13 +50,10 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      console.log('The dialog was closed');
-      this.game.players.push(name);
-     
+      if (name && name.length > 0) { // warum name &&
+        // sonst wird der trotzdem hinzugefügt wenn man auf no thanks clickt
+        this.game.players.push(name); //!!
+      }
     });
   }
-
 }
-
-
-
