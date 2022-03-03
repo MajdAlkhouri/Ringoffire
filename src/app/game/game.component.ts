@@ -11,7 +11,7 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 export class GameComponent implements OnInit {
   pickCardAnimation = false; // erst die variable auf false setzen
   currentCard: string = ''; // aber das ist ein bild
-  game: Game; //!!
+  game: Game; 
 
   constructor(public dialog: MatDialog) {}
 
