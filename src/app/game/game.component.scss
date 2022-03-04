@@ -28,21 +28,26 @@
  // transition: all 125ms ease-in-out; warum weg 
   animation: pick-card-animation 1s ease-in-out;
   transform: scale(1.1) translateX(250px) translateY(-250px) rotate(-10deg);
+ 
 }
 
 @keyframes pick-card-animation {
   0% {
     transform: scale(1) ;
+    transform: skewY(45deg);
   }
   40% {
     transform: scale(1.7) ;
+    transform: skewY(90deg);
   }
   60% {
     transform: scale(1.7) ;
+    transform: skewY(130deg);
   }
 
   100% {
     transform: scale(1.1) translateX(250px) translateY(-250px) rotate(-10deg);
+    transform: skewY(180deg);
   }
 }
 

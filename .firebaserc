@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ring-of-fire-c227e": {
+      "hosting": {
+        "ringoffire": [
+          "ring-of-fire-c227e"
+        ]
+      }
+    }
+  }
+}
