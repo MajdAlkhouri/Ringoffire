@@ -13,10 +13,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { GameInfoComponent } from './game-info/game-info.component';
-import {MatCardModule} from '@angular/material/card';
-import { AngularFireModule } from '@angular/fire/compat';
+import { MatCardModule } from '@angular/material/card';
+//import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { PlayersMobileComponent } from './players-mobile/players-mobile.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { environment } from '../environments/environment';
     PlayerComponent,
     DialogAddPlayerComponent,
     GameInfoComponent,
-
+    PlayersMobileComponent,
+    EditPlayerComponent,
   ],
   imports: [
+    //provideFirebaseApp(() => initializeApp(environment.firebase)), // muss so importiert sein
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +42,7 @@ import { environment } from '../environments/environment';
     MatInputModule,
     MatCardModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
