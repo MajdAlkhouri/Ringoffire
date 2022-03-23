@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PlayersMobileComponent implements OnInit {
   @Input() name; //variable für spieler namen .. was wir rein geben in unsere componente
   @Input() playerActive : boolean = false;
+  @Input() image = '1.webp'; 
+
 
   constructor() { }
 

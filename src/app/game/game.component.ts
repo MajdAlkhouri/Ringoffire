@@ -14,6 +14,7 @@ import { EditPlayerComponent } from '../edit-player/edit-player.component';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
+  gameOver = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +54,10 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+
+    } else if (!this.game.pickCardAnimation) {
       //Nicht verstanden  // es wird ausgeführt nur wenn pickCardAnimation false ist
       this.game.currentCard = this.game.stack.pop(); //pop methode zeigt die letzte wert vom array und entfernt ihn
 
@@ -66,6 +70,7 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer =
         this.game.currentPlayer % this.game.players.length; //!! nicht verstanden //
 
+
       this.saveGame(); // warum zwei mal ??
 
       setTimeout(() => {
@@ -76,17 +81,26 @@ export class GameComponent implements OnInit {
     }
   }
 
-   editPlayer(playerId: number){
-     console.log('editplayer', playerId);
 
-     const dialogRef = this.dialog.open(EditPlayerComponent);// dialog zu öfnnen um das bild zu ändern 
 
-     dialogRef.afterClosed().subscribe((change: string) => {
-     console.log('Recived change', change);
-     this.game.player_images[playerId] = change; // um das bild zu aktualiesieren 
+
+  editPlayer(playerId: number) {
+    console.log('editplayer', playerId);
+
+    const dialogRef = this.dialog.open(EditPlayerComponent); // dialog zu öfnnen um das bild zu ändern
+
+    dialogRef.afterClosed().subscribe((change: string) => {
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.players.splice(playerId, 1);
+        } else {
+          console.log('Recived change', change);
+          this.game.player_images[playerId] = change; // um das bild zu aktualiesieren
+        }
+        this.saveGame();
+      }
     });
-     
-   }
+  }
 
   openDialog(): void {
     // für neue spielre hinzufügen
@@ -97,7 +111,7 @@ export class GameComponent implements OnInit {
         // warum name &&
         // sonst wird der trotzdem hinzugefügt wenn man auf no thanks clickt
         this.game.players.push(name); //!!
-        this.game.player_images.push('standard.jpeg'); 
+        this.game.player_images.push('standard.jpeg');
         this.saveGame(); // um das spiel zu speichern
       }
     });
